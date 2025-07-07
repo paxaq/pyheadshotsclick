@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Headshot Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <img src="https://res.cloudinary.com/dbaijfahm/image/upload/v1751834024/logo_wrxmvu.png" alt="AI Headshots Click Logo" class="logo">
+    <h1>AI Headshots Click</h1>
+    <p class="intro-text">Transform your photos into professional headshots with AI. Simply upload your image, choose your preferences, and let our AI do the rest!</p>
+    <div class="container">
+        <div class="input-container">
+            <h2>Upload a Photo</h2>
+            <label for="image-upload" class="custom-file-upload">
+                <p>Click to upload an image</p>
+            </label>
+            <input type="file" id="image-upload" accept="image/*">
+            <div id="image-preview-container" style="display:none;">
+                <div class="spinner" id="image-preview-spinner"></div>
+                <img id="image-preview" src="" alt="Image Preview">
+            </div>
+            
+            <div class="options">
+                <div>
+                    <label for="gender">Gender:</label>
+                    <select id="gender">
+                        <option value="none">None</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="background">Background:</label>
+                    <select id="background">
+                        <option value="neutral">Neutral</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="grey">Grey</option>
+                        <option value="office">Office</option>
+                    </select>
+                </div>
+            </div>
+            <button id="generate-btn">Generate Headshot</button>
+            <button id="reset-btn" class="button">Reset</button>
+        </div>
+        <div class="output-container">
+            <h2>Generated Headshot</h2>
+            <div id="loading" style="display:none;">
+                <div class="spinner"></div>
+                <p>Generating...</p>
+            </div>
+            <img id="result-image" src="" alt="Generated Headshot">
+            <a id="download-btn" class="button" style="display:none;" download="headshot.png">Download Headshot</a>
+            <p id="error-message"></p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
