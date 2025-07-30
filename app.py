@@ -76,3 +76,6 @@ def handle_exception(e):
     print(f"An unhandled exception occurred: {e}")
     # Return a JSON response with a 500 status code
     return jsonify({'error': 'An unexpected server error occurred.', 'details': str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=8080)

@@ -3,62 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Headshot Generator</title>
+    <title>AI Headshots Click - Professional Headshot Generator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <img src="https://res.cloudinary.com/dbaijfahm/image/upload/v1751834024/logo_wrxmvu.png" alt="AI Headshots Click Logo" class="logo">
-    <h1>AI Headshots Click</h1>
-    <p class="intro-text">Transform your photos into professional headshots with AI. Simply upload your image, choose your preferences, and let our AI do the rest!</p>
-    <div class="container">
-        <div class="input-container">
-            <h2>Upload a Photo</h2>
-            <label for="image-upload" class="custom-file-upload">
-                <p>Click to upload an image</p>
-            </label>
-            <input type="file" id="image-upload" accept="image/*">
-            <div id="image-preview-container" style="display:none;">
-                <div class="spinner" id="image-preview-spinner"></div>
-                <img id="image-preview" src="" alt="Image Preview">
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="https://res.cloudinary.com/dbaijfahm/image/upload/v1751834024/logo_wrxmvu.png" alt="AI Headshots Click Logo" class="logo">
+                <h1 class="brand-title">AI Headshots Click</h1>
             </div>
-            
-            <div class="options">
-                <div>
-                    <label for="gender">Gender:</label>
-                    <select id="gender">
-                        <option value="none">None</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+            <div class="header-badge">
+                <i class="fas fa-magic"></i>
+                <span>AI Powered</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Transform Your Photos into Professional Headshots</h2>
+            <p class="hero-subtitle">Create stunning, professional headshots in seconds using advanced AI technology. Perfect for LinkedIn, resumes, and professional profiles.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>Lightning Fast</span>
                 </div>
-                <div>
-                    <label for="background">Background:</label>
-                    <select id="background">
-                        <option value="neutral">Neutral</option>
-                        <option value="black">Black</option>
-                        <option value="white">White</option>
-                        <option value="gray">Gray</option>
-                        <option value="office">Office</option>
-                    </select>
+                <div class="feature-item">
+                    <i class="fas fa-palette"></i>
+                    <span>Multiple Styles</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Privacy First</span>
                 </div>
             </div>
-            <button id="generate-btn">Generate Headshot</button>
-            <button id="reset-btn" class="button">Reset</button>
         </div>
-        <div class="output-container">
-            <h2>Generated Headshot</h2>
-            <div id="loading" style="display:none;">
-                <div class="spinner"></div>
-                <p>Generating...</p>
+    </section>
+
+    <!-- Main Application -->
+    <main class="main-container">
+        <div class="app-grid">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-cloud-upload-alt"></i> Upload Your Photo</h3>
+                    <p>Choose a clear photo of yourself for the best results</p>
+                </div>
+
+                <div class="upload-area">
+                    <label for="image-upload" class="file-upload-zone">
+                        <div class="upload-content">
+                            <i class="fas fa-image upload-icon"></i>
+                            <h4>Drop your image here</h4>
+                            <p>or click to browse</p>
+                            <span class="file-types">Supports JPG, PNG, WebP</span>
+                        </div>
+                    </label>
+                    <input type="file" id="image-upload" accept="image/*">
+                </div>
+
+                <div id="image-preview-container" class="preview-container" style="display:none;">
+                    <div class="preview-header">
+                        <span>Preview</span>
+                        <button id="remove-image" class="remove-btn" title="Remove image">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="preview-content">
+                        <div class="spinner" id="image-preview-spinner"></div>
+                        <img id="image-preview" src="" alt="Image Preview">
+                    </div>
+                </div>
+
+                <!-- Options Section -->
+                <div class="options-section">
+                    <h4><i class="fas fa-sliders-h"></i> Customization Options</h4>
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label for="gender" class="option-label">
+                                <i class="fas fa-user"></i>
+                                Gender Preference
+                            </label>
+                            <select id="gender" class="custom-select">
+                                <option value="none">Auto-detect</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="background" class="option-label">
+                                <i class="fas fa-image"></i>
+                                Background Style
+                            </label>
+                            <select id="background" class="custom-select">
+                                <option value="neutral">Professional Neutral</option>
+                                <option value="black">Classic Black</option>
+                                <option value="white">Clean White</option>
+                                <option value="gray">Modern Gray</option>
+                                <option value="office">Office Environment</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="generate-btn" class="btn-primary">
+                        <i class="fas fa-magic"></i>
+                        Generate Professional Headshot
+                    </button>
+                    <button id="reset-btn" class="btn-secondary">
+                        <i class="fas fa-redo"></i>
+                        Start Over
+                    </button>
+                </div>
             </div>
-            <img id="result-image" src="" alt="Generated Headshot">
-            <a id="download-btn" class="button" style="display:none;" download="headshot.png">Download Headshot</a>
-            <p id="error-message"></p>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-star"></i> Your Professional Headshot</h3>
+                    <p>AI-generated professional headshot ready for download</p>
+                </div>
+
+                <div class="result-container">
+                    <div id="loading" class="loading-state" style="display:none;">
+                        <div class="loading-animation">
+                            <div class="spinner-modern"></div>
+                            <div class="loading-text">
+                                <h4>Creating your headshot...</h4>
+                                <p>This usually takes 30-60 seconds</p>
+                            </div>
+                        </div>
+                        <div class="progress-steps">
+                            <div class="step active">
+                                <i class="fas fa-upload"></i>
+                                <span>Processing Image</span>
+                            </div>
+                            <div class="step">
+                                <i class="fas fa-brain"></i>
+                                <span>AI Enhancement</span>
+                            </div>
+                            <div class="step">
+                                <i class="fas fa-check"></i>
+                                <span>Finalizing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="result-content" class="result-content" style="display:none;">
+                        <div class="result-image-container">
+                            <img id="result-image" src="" alt="Generated Headshot">
+                            <div class="image-overlay">
+                                <button id="fullscreen-btn" class="overlay-btn" title="View fullscreen">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <a id="download-btn" class="btn-download" style="display:none;" download="professional-headshot.png">
+                                <i class="fas fa-download"></i>
+                                Download High Quality
+                            </a>
+                            <button id="share-btn" class="btn-share">
+                                <i class="fas fa-share-alt"></i>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="placeholder-content" class="placeholder-content">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h4>Your headshot will appear here</h4>
+                        <p>Upload a photo and click generate to get started</p>
+                    </div>
+                </div>
+
+                <div id="error-message" class="error-message"></div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 AI Headshots Click. Transform your professional image with AI.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#support">Support</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
